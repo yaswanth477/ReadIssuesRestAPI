@@ -1,27 +1,43 @@
+import github3
 from BaseHTTPServer import HTTPServer
 from BaseHTTPServer import BaseHTTPRequestHandler
-import cgi
 import json
-import urllib
 
 
-class ReadIssuesPublicsRepos(BaseHTTPRequestHandler):
-    #Api will invoke on get request
+class RestHTTPRequestHandler(BaseHTTPRequestHandler):
     def do_GET(self):
-
-        #Read API url from the source given
-        link = "https://api.github.com/repos/vmg/redcarpet/issues?state=open"
-        f = urllib.urlopen(link)
-        myfile = f.read()
-        print myfile
         self.send_response(200)
         self.end_headers()
 
-        #dump the data on the address of the running app
-        self.wfile.write(json.dumps({'data': myfile}))
+        res = {}
+        l = {}
+        k = None
+        li = []
+        gh = github3.login("username", "password")
+        org = gh.organization("att")
+        print org
+        repos = list(org.iter_repos(type="public"))  # Or type="private"
+        for r in repos:
+            # print r.name
+            k = r.name
+            issuess = gh.iter_repo_issues("att", r.name)
+
+            for iss in issuess:
+                # print iss.title , iss.number
+                if iss.comments > 0:
+                    # print iss.comments
+                    l['issues'] = {'title': iss.title, 'number': iss.number, 'Comments': iss.comments}
+                else:
+                    l['issues'] = {'title': iss.title, 'number': iss.number}
+                li.append(l['issues'])
+            res[k] = li
+            # print k
+        r = json.dumps(res)
+
+        self.wfile.write(json.dumps({'data': r}))
         return
- 
-# run class on the local server
-httpd = HTTPServer(('0.0.0.0', 8003), ReadIssuesPublicsRepos)
+
+
+httpd = HTTPServer(('0.0.0.0', 8005), RestHTTPRequestHandler)
 while True:
     httpd.handle_request()
