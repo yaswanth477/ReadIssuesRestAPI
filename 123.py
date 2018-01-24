@@ -38,6 +38,6 @@ class RestHTTPRequestHandler(BaseHTTPRequestHandler):
         return
 
 
-httpd = HTTPServer(('0.0.0.0', 8005), RestHTTPRequestHandler)
+httpd = HTTPServer('https://yeshwatn-testapp.herokuapp.com/', RestHTTPRequestHandler)
 while True:
     httpd.handle_request()
