@@ -3,6 +3,7 @@ from BaseHTTPServer import HTTPServer
 from BaseHTTPServer import BaseHTTPRequestHandler
 import json
 
+PORT = os.environ['PORT']
 
 class RestHTTPRequestHandler(BaseHTTPRequestHandler):
     def do_GET(self):
@@ -38,6 +39,6 @@ class RestHTTPRequestHandler(BaseHTTPRequestHandler):
         return
 
 
-httpd = HTTPServer(('0.0.0.0',8001), RestHTTPRequestHandler)
+httpd = HTTPServer(('',PORT), RestHTTPRequestHandler)
 while True:
     httpd.handle_request()
