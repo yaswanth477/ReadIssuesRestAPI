@@ -3,7 +3,7 @@ from BaseHTTPServer import HTTPServer
 from BaseHTTPServer import BaseHTTPRequestHandler
 import json
 import os
-import SocketServer
+import socketserver
 
 PORT = os.environ['PORT']
 class RestHTTPRequestHandler(BaseHTTPRequestHandler):
