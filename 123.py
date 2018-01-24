@@ -3,18 +3,18 @@ from BaseHTTPServer import HTTPServer
 from BaseHTTPServer import BaseHTTPRequestHandler
 import json
 import os
-PORT = os.environ['PORT']
+import SocketServer
 
+PORT = os.environ['PORT']
 class RestHTTPRequestHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         self.send_response(200)
         self.end_headers()
-
         res = {}
         l = {}
         k = None
         li = []
-        gh = github3.login("", "") #enter your github username and password
+        gh = github3.login("yaswanthus93@gmail.com", "yaswanth12") #enter your github username and password
         org = gh.organization("att")
         # print org
         repos = list(org.iter_repos(type="public"))  # Or type="private"
@@ -39,6 +39,6 @@ class RestHTTPRequestHandler(BaseHTTPRequestHandler):
         return
 
 
-httpd = HTTPServer(('',PORT), RestHTTPRequestHandler)
+httpd = SocketServer.TCPServer(('',PORT), RestHTTPRequestHandler)
 while True:
     httpd.handle_request()
