@@ -15,7 +15,7 @@ class RestHTTPRequestHandler(BaseHTTPRequestHandler):
         li = []
         gh = github3.login("username", "password")
         org = gh.organization("att")
-        print org
+        # print org
         repos = list(org.iter_repos(type="public"))  # Or type="private"
         for r in repos:
             # print r.name
