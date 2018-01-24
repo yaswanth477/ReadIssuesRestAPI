@@ -5,7 +5,7 @@ import json
 import os
 import socketserver
 
-PORT = os.environ['PORT']
+PORT = 5001
 class RestHTTPRequestHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         self.send_response(200)
