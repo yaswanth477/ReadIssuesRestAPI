@@ -21,7 +21,7 @@ class RestHTTPRequestHandler(BaseHTTPRequestHandler):
         print(org)
         repos = list(org.iter_repos())  # Or type=private
         repos = list(org.iter_repos(type="public"))  # Or type=private
-        for r in repos[:2]:
+        for r in repos[:1]:
             print(r.name)
             k = r.name
             issuess = gh.iter_repo_issues("att", r.name)
