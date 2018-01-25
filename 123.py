@@ -83,6 +83,6 @@ class RestHTTPRequestHandler(BaseHTTPRequestHandler):
 
 
 httpd = SocketServer.TCPServer(('', PORT), RequestHandlerClass=RestHTTPRequestHandler)
-
+httpd.serve_forever()
 while True:
     httpd.handle_request()
