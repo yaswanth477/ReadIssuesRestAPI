@@ -1,4 +1,4 @@
-web: python 123.py
+web: gunicorn 123
 
 
 
