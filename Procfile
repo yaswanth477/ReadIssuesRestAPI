@@ -1,1 +1,1 @@
-web: web: gunicorn 123 --log-file -
+web: web: python 123.py --log-file -

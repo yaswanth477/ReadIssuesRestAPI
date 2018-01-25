@@ -45,7 +45,7 @@ import json
 import os
 import SocketServer
 
-PORT = 5001
+PORT = 80
 
 
 class RestHTTPRequestHandler(BaseHTTPRequestHandler):
@@ -82,7 +82,7 @@ class RestHTTPRequestHandler(BaseHTTPRequestHandler):
         return
 
 
-httpd = SocketServer.TCPServer(server_address='', RequestHandlerClass=RestHTTPRequestHandler)
+httpd = SocketServer.TCPServer(('', PORT), RequestHandlerClass=RestHTTPRequestHandler)
 
 while True:
     httpd.handle_request()
