@@ -5,7 +5,7 @@ import json
 import os
 import socketserver
 
-PORT = 80
+PORT = 7000
 
 
 class RestHTTPRequestHandler(BaseHTTPRequestHandler):
