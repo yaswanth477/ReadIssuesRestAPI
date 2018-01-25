@@ -41,6 +41,6 @@ class RestHTTPRequestHandler(BaseHTTPRequestHandler):
         return
 
 
-httpd = socketserver.TCPServer(('localhost', PORT), RestHTTPRequestHandler)
+httpd = socketserver.TCPServer(('', PORT), RestHTTPRequestHandler)
 while True:
     httpd.handle_request()
