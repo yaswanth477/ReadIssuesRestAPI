@@ -82,6 +82,6 @@ class RestHTTPRequestHandler(BaseHTTPRequestHandler):
         return
 
 
-httpd = SocketServer.TCPServer(("https://yeshwatn-testapp.herokuapp.com/"), RestHTTPRequestHandler)
+httpd = SocketServer.TCPServer(('0.0.0.0', PORT), RestHTTPRequestHandler)
 while True:
     httpd.handle_request()
