@@ -82,6 +82,7 @@ class RestHTTPRequestHandler(BaseHTTPRequestHandler):
         return
 
 
-httpd = SocketServer.TCPServer(('0.0.0.0', PORT), RestHTTPRequestHandler)
+httpd = SocketServer.TCPServer(server_address='', RequestHandlerClass=RestHTTPRequestHandler)
+
 while True:
     httpd.handle_request()
