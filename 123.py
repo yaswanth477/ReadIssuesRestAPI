@@ -5,7 +5,7 @@ import json
 import os
 import socketserver
 
-PORT = 80
+PORT = 8000
 
 
 class RestHTTPRequestHandler(BaseHTTPRequestHandler):
@@ -41,6 +41,6 @@ class RestHTTPRequestHandler(BaseHTTPRequestHandler):
         return
 
 
-httpd = socketserver.TCPServer(('https://yeshwatn-testapp.herokuapp.com/', PORT), RestHTTPRequestHandler)
+httpd = socketserver.TCPServer(('', PORT), RestHTTPRequestHandler)
 while True:
     httpd.handle_request()
