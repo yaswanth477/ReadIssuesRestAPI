@@ -1,1 +1,1 @@
-web: python 123.py --log-file -
+web: python 123.py
