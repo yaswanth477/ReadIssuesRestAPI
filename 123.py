@@ -107,7 +107,7 @@ class RestHTTPRequestHandler(BaseHTTPRequestHandler):
         # print org
         repos = list(org.iter_repos(type="public"))  # Or type=private
 
-        for r in repos[:2]:
+        for r in repos[:1]:
             # print r.name
             k = r.name
             issuess = gh.iter_repo_issues("att", r.name)
@@ -122,12 +122,12 @@ class RestHTTPRequestHandler(BaseHTTPRequestHandler):
                 li.append(l['issues'])
             res[k] = li
             print(k,li)
-        r = json.dumps(res)
+        # r = json.dumps(res)
 
-        self.wfile.write(json.dumps({'data': r}))
+        self.wfile.write(json.dumps({'data': res}))
         return
 
 
-httpd = socketserver.TCPServer(('localhost',PORT), RestHTTPRequestHandler)
+httpd = socketserver.TCPServer(('localhost', PORT), RestHTTPRequestHandler)
 while True:
     httpd.handle_request()
